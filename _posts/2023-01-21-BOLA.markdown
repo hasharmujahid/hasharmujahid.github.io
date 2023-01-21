@@ -1,0 +1,90 @@
+---
+title: "Broken Object Level Authorisation [API-SECURITY 0x01]"
+layout: page
+date: 2023-01-21
+image: https://miro.medium.com/max/786/0*Wr3Tm8LvmG57ES_2.webp
+headerImage: false
+tag:
+- markdown
+- elements
+star: true
+category: blog
+author: Hashar Mujahid
+description: Hi This Blog Explains What BOLA is.
+---
+
+
+Hi, My name is **Hashar Mujahid**. I am a security researcher and a penetration testing student. This is the first blog of the API SECURITY series where we will learn about some common security vulnerabilities that APIs are prone to.
+
+![image](https://miro.medium.com/max/786/0*Wr3Tm8LvmG57ES_2.webp)
+
+We can not understand object-level authorization until we have a solid understanding of the object.
+
+# **WHAT IS AN OBJECT?**
+
+An object is a piece of code that process and stores some information. This is similar to the object in OOP (object-oriented programming). In lamens terms, the object can be an id of the user, email, username, account, personal notes, etc. An object can be any data within an application.
+
+## **WHAT IS AUTHORIZATION ON THE OBJECT?**
+
+Authorization is the process of granting access to specific objects or data within an application based on a user’s privilege level. Authorization is implemented to maintain the confidentiality, integrity, and availability of the data or object.
+
+The main purpose is to make sure the object is accessed by the people it is intended for. Like some functionalities and information are hidden in web applications and APIs and only the admin can access them this is done by implementing checks on the authorization level of the user while accessing them.
+
+Now we have some understanding of the Object and Authorization implemented on it Let’s discuss what is broken object-level authorization.
+
+# **WHAT IS BROKEN OBJECT-LEVEL AUTHORIZATION?**
+
+Broken Object-Level Authorization is a vulnerability in which an unauthorized person is able to retrieve, modify and delete confidential information from the API.
+
+Let’s take an example:
+
+Suppose an attacker signup on to an API provider. When he retrieved his account information he saw an interesting parameter.
+
+`http://supersecureapi/api/v2/getuser/1223`
+
+He made an assumption that the number at the end is his user-id so he tried to enter 1 instead of his id.
+
+`[http://supersecureapi/api/v2/getuser/1](http://supersecureapi/api/v2/getuser/1223)`
+
+and he was able to retire all the information about the admin’s account.
+
+This is what BOLA is.
+
+![](https://miro.medium.com/max/770/0*WLS40-U3XKgfzXSH)
+
+FLOW
+
+## PRACTICAL LAB:
+
+To demonstrate this vulnerability we will use a lab environment called “[vapi](http://vapi.apisec.ai/)”. Download the swagger.json file and import it in postman. You should have an interface like this.
+![](https://miro.medium.com/max/770/1*_7isPSKlgAvppR9cP_LWNA.png)
+
+postman
+
+Let’s test the API1 for BOLA.
+
+![](https://miro.medium.com/max/321/1*O2I8Zbz10rO9e_HLKxTaLA.png)
+
+Requests
+
+We can see there are 3 requests which perform these functionalities Signup, Get info, and Update. Let’s signup.
+
+To signup, we need to set the body parameters that are required.
+
+![](https://miro.medium.com/max/770/1*CiAI2fez4UM5WGmiVQEGwg.png)
+
+We can see our new user is created and we got his unique id. Let’s now fetch this user’s details by using get user request.
+
+![](https://miro.medium.com/max/770/1*6CJugkwZIlzc1R7YJ42vrQ.png)
+
+user details
+
+We can we our information. But let's try to change the id parameter and see if we can retrieve information about other users.
+
+![](https://miro.medium.com/max/770/1*MtSISvkLYZByrhgcTWg6Yw.png)
+
+We can see we were able to retrieve information about other users.
+
+This is what Broken Object-Level Authorization. Hope you have understood what BOLA is. Follow me for more upcoming blogs about API security vulnerabilities.
+
+Till then Happy Hacking ❤.
