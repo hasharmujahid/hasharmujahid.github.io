@@ -27,12 +27,12 @@ url: https://hasharmujahid.github.io
 permalink: /:title/
 
 # To enable google analytics, supply your token below
-# analytics-google: 'UA-MYANALYTICS'
+analytics-google: 'G-7L93LBTRRS'
 
 # if you don't want comments in your posts, leave categories empty
-disqus:
-  shortname: github # enter this from your disqus account
-  categories: [blog, project] # only show disqus for posts that have these categories
+#disqus:
+ # shortname: github # enter this from your disqus account
+ # categories: [blog, project] # only show disqus for posts that have these categories
 
 # if you don't have any of social below, comment the line
 facebook: hasharmujahid.hashar
