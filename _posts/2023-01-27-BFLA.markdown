@@ -1,8 +1,22 @@
+---
+title: "BROKEN FUNCTION LEVEL AUTHORIZATION [API SECURITY — 0x2]"
+layout: page
+date: 2023-01-27
+image: https://miro.medium.com/max/786/0*Wr3Tm8LvmG57ES_2.webp
+headerImage: false
+tag:
+- markdown
+- elements
+star: true
+category: blog
+author: Hashar Mujahid
+description: Hi This Blog Explains What BFLA is.
+---
 # BROKEN FUNCTION LEVEL AUTHORIZATION [API SECURITY — 0x2]
 
 Hi! My name is Hashar Mujahid, and Today we are going to learn about what broken function-level authorization is in modern APIs.
 
-![](https://miro.medium.com/max/770/0*ovOhkZTeG24Ab-y2.jpg)
+![image](https://miro.medium.com/max/770/0*ovOhkZTeG24Ab-y2.jpg)
 
 # WHAT IS BFLA?
 
