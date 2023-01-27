@@ -1,0 +1,105 @@
+# BROKEN FUNCTION LEVEL AUTHORIZATION [API SECURITY — 0x2]
+
+Hi! My name is Hashar Mujahid, and Today we are going to learn about what broken function-level authorization is in modern APIs.
+
+![](https://miro.medium.com/max/770/0*ovOhkZTeG24Ab-y2.jpg)
+
+# WHAT IS BFLA?
+
+When a user is able to perform certain functions that are above his privilege level then it can cause a lot of problems. In lamen’s terms imagine you create an account on GitHub and instead of only being able to delete your account’s repositories you are able to delete anyone’s repository this raises a lot of questions on the authorization process adopted by GitHub.
+
+> BFLA vulnerabilities are mainly performing actions of other users.
+
+These actions can be of 2 severities.
+
+-   Lateral actions
+-   Escalated actions.
+
+**Lateral actions** mean performing actions of a user account with the same privilege as your account.
+
+> For example:
+> 
+> User A performs a action on User B’s account.
+
+**Escalated actions** mean performing actions of a user with higher privilege than your account’s privilege level.
+
+> For example:
+> 
+> User A performing action that is only allowed for the administrators of the website
+
+# **DIFFERENCE BETWEEN BOLA AND BFLA?**
+
+BOLA {Broken Object Level Authorization} is all about accessing the resources of other users. If you want to learn more about BFLA I had written a blog about it.
+
+[
+## Broken Object Level Authorization [API SECURITY — 0x1]](https://infosecwriteups.com/broken-object-level-authorization-api-security-0x1-a1a2638fc8c9)
+
+BFLA {Broken Function Level Authorization} is all about performing actions of other users.
+
+**For Example:**
+
+> BOLA is like you are able to access some private notes of other users.
+> 
+> BFLA is like you are able to toggle the function that allows creating, Modifying, or deleting those notes.
+
+I hope now you should have some understanding of BFLA. Now let’s discuss how you should test for BFLA vulnerabilities in APIs.
+
+# **HOW TO TEST FOR BFLA?**
+
+If you want to test an API for BFLA. The most effective approach is to create 2 user accounts. Create resources on User account A like uploading a profile picture and creating some personalization changes to your dashboard make sure you have a burp suite logging the requests. Now just look for the requests that have some resource id and HTTP method of a POST or PUT.
+
+Send These requests to Burp Repeater and change the authorization token of user A with user B. Now send the request and see if they were successful. If the requests were successful then go to the user A account and confirm the changes. If changes are registered then that means you have a Broken Function Level Authorization.
+
+# LAB: FINDING BFLA IN CrAPI.
+
+Let’s find a broken function level authorization in CrAPI. You can find a Hosted Environment of CrAPI
+
+[crAPI completely ridiculous API (crAPI) will help you to understand the ten most critical API security risks. crapi.apisec.ai](http://crapi.apisec.ai/)
+
+Let’s analyze some requests and see which can be vulnerable for BFLA. We are specifically looking for requests that contain some resource Id and have HTTP methods of POST and PUT or Delete. I will be using the collection I made using postman to help me with testing.
+
+Let’s get started.
+
+![](https://miro.medium.com/max/770/1*G68mwgly8aBERHRYEsEkhA.png)
+
+The above request fulfills all the required prerequisites so let’s test it.
+
+Let’s signup for User A and User B.
+
+After signing up. Upload the video in the profile section and set the name.
+
+![](https://miro.medium.com/max/770/1*Ae_iX33JK7IKfnMS_QZrWw.png)
+
+We can see the authorization token of user A Let’s Swap it with the token of user B.
+
+![](https://miro.medium.com/max/770/1*VGYpz7f3pfqtBX8loqjb1g.png)
+
+We can see the name is not changed because the returned id is different than the id of user A. So we don’t have BFLA But we can try to change the method from PUT to Delete.
+
+![](https://miro.medium.com/max/770/1*F9LV4k9Ys_LuxqTpm9mM8w.png)
+
+We can see this function is not accessible for the normal user and we should try to access it through admin API. But in all our traffic logged from the website, we were unable to get any traffic from admin api.
+
+But let's analyze the URLs and path.
+
+NORMAL USER:
+
+[http://crapi.apisec.ai/identity/api/v2/user/videos/4127](http://crapi.apisec.ai/identity/api/v2/user/videos/4127)
+
+The admin path could be
+
+[http://crapi.apisec.ai/identity/api/v2/admin/videos/4127](http://crapi.apisec.ai/identity/api/v2/user/videos/4127)
+
+So let’s try this.
+
+![](https://miro.medium.com/max/770/1*hFq7TkZM33dpAsmHu4Aa1A.png)
+
+We can see we were able to delete the video successfully.
+
+So we were able to abuse the function that is only allowed for admin users. That confirms the presence of Broken Function level authorization.
+
+[Cybersecurity](https://medium.com/tag/cybersecurity?source=post_page-----23a6d7c1aa46---------------cybersecurity-----------------)
+[API](https://medium.com/tag/api?source=post_page-----23a6d7c1aa46---------------api-----------------)
+[Security](https://medium.com/tag/security?source=post_page-----23a6d7c1aa46---------------security-----------------)
+[Penetration Testing](https://medium.com/tag/penetration-testing?source=post_page-----23a6d7c1aa46---------------penetration_testing-----------------)
+[Hacking](https://medium.com/tag/hacking?source=post_page-----23a6d7c1aa46---------------hacking-----------------)
