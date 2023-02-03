@@ -1,3 +1,18 @@
+---
+title: "SERIALIZATION VULNERABILITIES [JAVA],[Explained & Exploited]☠"
+layout: page
+date: 2023-02-03
+image: https://miro.medium.com/max/786/0*Wr3Tm8LvmG57ES_2.webp
+headerImage: false
+tag:
+- markdown
+- elements
+star: true
+category: blog
+author: Hashar Mujahid
+description: Hi! My name is Hashar Mujahid and today we are going to learn what is Serialization and how we can exploit it in modern frameworks and languages.
+---
+
 # SERIALIZATION VULNERABILITIES [JAVA][Explained & Exploited]
 
 Hi! My name is Hashar Mujahid and today we are going to learn what is Serialization and how we can exploit it in modern frameworks and languages.
