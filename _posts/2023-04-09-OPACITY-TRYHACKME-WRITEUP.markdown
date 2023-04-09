@@ -5,12 +5,13 @@ date: 2023-04-09
 image: https://miro.medium.com/max/786/0*Wr3Tm8LvmG57ES_2.webp
 headerImage: false
 tag:
-- markdown
-- elements
+- Opacity thm writeup
+- OPACITY WALKTHROUGH
+- Opacity
 star: true
 category: blog
 author: Hashar Mujahid
-description: Hi This Blog is the writeup of Stocker Machine from Hack The Box.
+description: Hi This Blog is the writeup of Opacity Machine from TryHackMe.
 ---
 
 # NETWORK ENUMERATION:
