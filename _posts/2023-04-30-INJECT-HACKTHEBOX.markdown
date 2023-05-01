@@ -1,7 +1,7 @@
 ---
 title: "INJECT HTB EASY"
 layout: page
-date: 2023-02-23
+date: 2023-04-29
 image: https://miro.medium.com/max/786/0*Wr3Tm8LvmG57ES_2.webp
 headerImage: false
 tag:
